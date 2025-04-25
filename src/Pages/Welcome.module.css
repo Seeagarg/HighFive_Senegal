@@ -1,0 +1,12 @@
+.container{
+    background-image: url('../Assets/bg.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9; 
+    justify-content: center; 
+    
+  }
