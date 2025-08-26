@@ -5,12 +5,14 @@ import img from '../Assets/high_logo.png'
 const Welcome = () => {
 
 
+
   const urlParams = new URLSearchParams(window.location.search);
   const ExtId = urlParams.get('extId');
 
     useEffect(()=>{
         setTimeout(()=>{
           window.location.href = `https://waaat.orange.sn/panz_osn/?serviceName=HighFiveGames&${ExtId && `extId=${ExtId}`}`;
+
         },2000)
     },[])
 

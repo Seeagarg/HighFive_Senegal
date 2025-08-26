@@ -30,69 +30,7 @@ const Otp = ({serviceName}) => {
     const navigate = useNavigate()
     const [time,setTime] = useState(60);
     const pack = Cookies.get('pack');
-    var extId = Cookies.get('extId')
-          const [tVal,setTVal] = useState(null)
-
-
-
-
-           const getScript=async()=> {
-            setLoading(true);
-      
-            try {
-              
-              const getScript = await axios.get(`${base_url}/api/v1/script?serviceName=HighFive&ext_id=${extId}`)
-              // const getScriptURL = `${ENDPOINT_URL}?applicationId=193&countryId=207&requestId=${evinaRequestId}`;
-              console.log("script url--- ", JSON.parse(getScript.data.response).s);
-              // const response = await axios.get(getScriptURL.data);
-      
-              // if (!response.ok) {
-              //   throw new Error(
-              //     `Failed to fetch script: ${response.status} ${response.statusText}`
-              //   );
-              // }
-      
-              const scriptContent = await JSON.parse(getScript.data.response).s;
-              console.log("response----- " + scriptContent);
-              // setAntiFrauduniqid(scriptContent["AntiFrauduniqid"]);
-      
-              console.log("response " + scriptContent[100]);
-
-              setTVal(JSON.parse(getScript.data.response)?.t)
-
-      
-              console.log(getScript.data.ti)
-              extId =  await getScript?.data?.ti;
-              Cookies.set('extId',extId)
-      
-              if (scriptContent) {
-                let top_head = document.getElementsByTagName("head")[0];
-                let anti_script = document.createElement("script");
-      
-                anti_script.innerHTML = scriptContent;
-                top_head.insertBefore(anti_script, top_head.firstChild);
-      
-                var event = new Event("DCBProtectRun");
-                // console.log(event);
-                document.dispatchEvent(event);
-                document.addEventListener("gateway-load", (event) => {
-                  //Enable form submission
-                  // setScriptLoaded(true);
-                  console.log(event, "EVENT LOADED");
-                });
-              }
-      
-            } catch (error) {
-              console.error("Error fetching script", error);
-            } finally {
-              setLoading(false);
-            }
-          }
-      
-      
-          useEffect(()=>{
-            getScript()
-          },[])
+          const extId = Cookies.get('extId')
 
     
 
@@ -111,7 +49,7 @@ const Otp = ({serviceName}) => {
         //    window.location.href='https://highfivesgames.com/#/home'
         // }
        
-        const res = await axios.post(`${base_url}/matched-otp?pack=${pack}&extId=${extId}&otpId=${otpId}&otp=${otp}&t=${tVal}`);
+        const res = await axios.post(`${base_url}/matched-otp?pack=${pack}&extId=${extId}&otpId=${otpId}&otp=${otp}`);
         console.log(res.data)
        
         if(res?.status == 200){
@@ -207,22 +145,13 @@ const Otp = ({serviceName}) => {
   </div>
           
 <br />
- <p className='text-black font-bold text-xl' >OTP expirera dans {time}</p>
-
           <button
             disabled={loading}
-            id="otp-send"
             type="submit"
             className=" text-white mt-2 w-48 bg-[#0D6EFD] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-7 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-            {loading ? "Chargement..." : "s'abonner"}
+            {loading ? "Chargement..." : "Valider OTP"}
           </button>
-
-           <p
-  onClick={() => navigate('/tnc')}
-  className="text-black font-bold text-center mt-4 underline cursor-pointer"
->
-  Conditions générales
-</p>
+ <p className='text-black font-bold text-xl' >OTP expirera dans {time}</p>
         </form>
       </div>
       <ToastContainer />

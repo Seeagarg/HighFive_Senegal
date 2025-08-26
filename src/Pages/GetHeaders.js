@@ -15,10 +15,8 @@ const GetHeaders = () => {
 
     const navigate = useNavigate();
     const [show,setShow] = useState(false);
-        const [tVal,setTVal] = useState(null)
 
-
-    const [selectedOption, setSelectedOption] = useState({ value: 'daily', label: 'Tous les jours/100 FCFA' })
+    const [selectedOption, setSelectedOption] = useState({ value: 'daily', label: 'Tous les jours' })
     const [loading,setLoading] = useState(false)
 
     // const number = Cookies.get('number')
@@ -26,9 +24,7 @@ const GetHeaders = () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const msisdn = urlParams.get('msisdn');
-    var ExtId = urlParams.get('extId');
-
-    
+    const ExtId = urlParams.get('extId');
 
     Cookies.set('number',msisdn);
     Cookies.set('extId',ExtId)
@@ -38,9 +34,9 @@ const GetHeaders = () => {
 
 
     const options = [
-        { value: 'daily', label: 'Tous les jours/100 FCFA' },
-        { value: 'weekly', label: 'Hebdomadaire/300 FCFA' },
-        { value: 'monthly', label: 'Mensuelle/500 FCFA' },
+        { value: 'daily', label: 'Tous les jours' },
+        { value: 'weekly', label: 'Hebdomadaire' },
+        { value: 'monthly', label: 'Mensuelle' },
       ];
 
       const customStyles = {
@@ -64,8 +60,7 @@ const GetHeaders = () => {
         const data = {
           msisdn:msisdn,
           packType:selectedOption.value,
-          extId:ExtId,
-          t:tVal
+          extId:ExtId
         }
     
         try{
@@ -107,7 +102,7 @@ const GetHeaders = () => {
           try{
             const res = await axios.get(`${base_url}/get-header?alias=${msisdn}&extId=${ExtId}`);
             console.log(res?.status,'rspojse')
-            if(res?.status == 200 || res?.status == 201 || res?.status == 202 ){
+            if(res?.status == 200 || res?.status == 201 ){
                 // navigate('/home')
                 window.location.href='https://highfivesgames.com/#/?op=orange'
             }
@@ -132,71 +127,6 @@ const GetHeaders = () => {
         getHeaders();
 
       }, []);
-
-
-
-
-
-      const getScript=async()=> {
-            setLoading(true);
-      
-            try {
-              
-              const getScript = await axios.get(`${base_url}/api/v1/script?serviceName=HighFive&ext_id=${ExtId}`)
-              // const getScriptURL = `${ENDPOINT_URL}?applicationId=193&countryId=207&requestId=${evinaRequestId}`;
-              console.log("script url--- ", JSON.parse(getScript.data.response).s);
-              // const response = await axios.get(getScriptURL.data);
-      
-              // if (!response.ok) {
-              //   throw new Error(
-              //     `Failed to fetch script: ${response.status} ${response.statusText}`
-              //   );
-              // }
-      
-              const scriptContent = await JSON.parse(getScript.data.response).s;
-              console.log("response----- " + scriptContent);
-              // setAntiFrauduniqid(scriptContent["AntiFrauduniqid"]);
-      
-              console.log("response " + scriptContent[100]);
-
-              setTVal(JSON.parse(getScript.data.response)?.t)
-
-      
-              ExtId =  await getScript.data.t;
-      
-              if (scriptContent) {
-                let top_head = document.getElementsByTagName("head")[0];
-                let anti_script = document.createElement("script");
-      
-                anti_script.innerHTML = scriptContent;
-                top_head.insertBefore(anti_script, top_head.firstChild);
-      
-                var event = new Event("DCBProtectRun");
-                // console.log(event);
-                document.dispatchEvent(event);
-                document.addEventListener("gateway-load", (event) => {
-                  //Enable form submission
-                  // setScriptLoaded(true);
-                  console.log(event, "EVENT LOADED");
-                });
-              }
-      
-            } catch (error) {
-              console.error("Error fetching script", error);
-            } finally {
-              setLoading(false);
-            }
-          }
-      
-      
-          useEffect(()=>{
-            getScript()
-          },[])
-      
-
-
-
-
 
 
   return (
@@ -235,20 +165,13 @@ const GetHeaders = () => {
         <div className="flex mt-4 md:mt-6">
           <button
             onClick={handle}
-            id="otp-send"
             type='submit'
             className="w-full bg-orange-600 text-white py-2 px-4 rounded"
             disabled={loading}
           >
-            {loading ? "Soumission..." : "s'abonner"}
+            {loading ? "Soumission..." : "Soumettre"}
           </button>
         </div>
-         <p
-  onClick={() => navigate('/tnc')}
-  className="text-blue-400 text-center mt-4 underline cursor-pointer"
->
-  Conditions générales
-</p>
       </form>
     </div>
     <ToastContainer/>

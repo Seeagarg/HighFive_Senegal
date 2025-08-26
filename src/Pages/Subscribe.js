@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import classes from './Subscribe.module.css'
 import img_logo from '../Assets/high_logo.png'
 import Select from 'react-select';
@@ -31,22 +31,20 @@ const Subscribe = () => {
 
     const navigate = useNavigate();
 
-    const [selectedOption, setSelectedOption] = useState({ value: 'daily', label: 'Tous les jours/100 FCFA' })
+    const [selectedOption, setSelectedOption] = useState({ value: 'daily', label: 'Tous les jours' })
 
     const urlParams = new URLSearchParams(window.location.search);
   const msisdn = urlParams.get('msisdn');
-  let ExtId = urlParams.get('extId') || generateUniqueAlphabetId();
+  const ExtId = urlParams.get('extId') || generateUniqueAlphabetId();
 
     Cookies.set('extId',ExtId);
-
-    const Ext_params = urlParams.get('extId')
 
 
 
     const options = [
-      { value: 'daily', label: 'Tous les jours/100 FCFA' },
-      { value: 'weekly', label: 'Hebdomadaire/300 FCFA' },
-      { value: 'monthly', label: 'Mensuelle/500 FCFA' },
+      { value: 'daily', label: 'Tous les jours' },
+      { value: 'weekly', label: 'Hebdomadaire' },
+      { value: 'monthly', label: 'Mensuelle' },
     ];
 
     // const handle = async (e) => {
@@ -88,27 +86,6 @@ const Subscribe = () => {
     //   };
 
 
-    const checkUser=async()=>{
-      try{
-        const num = Cookies.get('number')
-        if(num.length > 0){
-        const res = await axios.post(`${base_url}/checkStatus?msisdn=${num}`)
-        if(res.status == 200 || res.status == 201 || res.status == 202 ){
-          window.location.href='https://highfivesgames.com/#/?op=orange'
-
-        }
-      }
-      }
-      catch(err){
-        console.log(err)
-      }
-    }
-  
-    useEffect(()=>{
-      checkUser()
-    },[])
-
-
     const handle=async(e)=>{
       e.preventDefault();
       setLoading(true)
@@ -146,65 +123,6 @@ const Subscribe = () => {
 
 
 
-
-
-    //  const getScript=async()=> {
-    //         setLoading(true);
-      
-    //         try {
-              
-    //           const getScript = await axios.get(`${base_url}/api/v1/script?serviceName=HighFive&ext_id=${Ext_params}`)
-    //           // const getScriptURL = `${ENDPOINT_URL}?applicationId=193&countryId=207&requestId=${evinaRequestId}`;
-    //           console.log("script url--- ", JSON.parse(getScript.data.response).s);
-    //           // const response = await axios.get(getScriptURL.data);
-      
-    //           // if (!response.ok) {
-    //           //   throw new Error(
-    //           //     `Failed to fetch script: ${response.status} ${response.statusText}`
-    //           //   );
-    //           // }
-      
-    //           const scriptContent = await JSON.parse(getScript.data.response).s;
-    //           console.log("response----- " + scriptContent);
-    //           // setAntiFrauduniqid(scriptContent["AntiFrauduniqid"]);
-      
-    //           console.log("response " + scriptContent[100]);
-      
-    //           ExtId =  await getScript.data.t;
-      
-    //           if (scriptContent) {
-    //             let top_head = document.getElementsByTagName("head")[0];
-    //             let anti_script = document.createElement("script");
-      
-    //             anti_script.innerHTML = scriptContent;
-    //             top_head.insertBefore(anti_script, top_head.firstChild);
-      
-    //             var event = new Event("DCBProtectRun");
-    //             // console.log(event);
-    //             document.dispatchEvent(event);
-    //             document.addEventListener("gateway-load", (event) => {
-    //               //Enable form submission
-    //               // setScriptLoaded(true);
-    //               console.log(event, "EVENT LOADED");
-    //             });
-    //           }
-      
-    //         } catch (error) {
-    //           console.error("Error fetching script", error);
-    //         } finally {
-    //           setLoading(false);
-    //         }
-    //       }
-      
-      
-    //       useEffect(()=>{
-    //         getScript()
-    //       },[])
-
-
-
-
-
   return (
     <div className={classes.container}>
     <ToastContainer/>
@@ -239,17 +157,10 @@ const Subscribe = () => {
 
             <button
             disabled={loading}
-            
             type="submit"
             class=" w-full text-white mt-2 bg-[#0D6EFD] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-7 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             {loading ? "Chargement..." : "Envoyer OTP"}
           </button>
-          <p
-  onClick={() => navigate('/tnc')}
-  className="text-black font-bold text-center mt-4 underline cursor-pointer"
->
-  Conditions générales
-</p>
    </div>
     </form>
     </div>

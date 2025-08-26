@@ -6,6 +6,7 @@ import GetHeaders from './Pages/GetHeaders';
 import {Routes,Route,Navigate} from 'react-router-dom'
 import Welcome from './Pages/Welcome';
 import Otp from './Pages/Otp';
+
 import DailyPage from './Pages/DailyPage';
 import DailySub from './Pages/DailySub';
 import Tnc from './Pages/Tnc';
@@ -24,6 +25,7 @@ function App() {
 
       <Route path="/welcome" element={<Welcome/>} />
       <Route path="*" element={<Navigate to="/welcome" />} />
+
     </Routes>
     </>
   );

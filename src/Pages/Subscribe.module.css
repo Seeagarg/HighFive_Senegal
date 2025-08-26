@@ -15,6 +15,7 @@
     /* filter: blur(8px); */
   }
 
+<<<<<<< HEAD
 
 .container1{
     background-image: url('../Assets/bg.jpg'); /* Path to your background image */
@@ -117,6 +118,8 @@
 
 
 /* =================tnc================= */
+=======
+>>>>>>> ca153361d4a5936876071c7cfdbaf79e6ef999ed
   .sub_container{
     width: 100%;
     height: 100%;
