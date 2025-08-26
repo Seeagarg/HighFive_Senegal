@@ -1,0 +1,207 @@
+.container{
+    background-image: url('../Assets/bg.jpg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Fixed background position */
+    min-height: 100vh; /* Minimum height to cover the whole screen */
+    display: flex;
+    flex-direction: column;
+    /* background-position: center; */
+    opacity: 0.9; /* Adjust the opacity as needed */
+    /* margin-left: 5px; Remove the quotes around the value */
+    /* padding: 20px; Add padding to the container */
+    /* align-items: center; Center the content horizontally */
+    justify-content: center; 
+    /* filter: blur(8px); */
+  }
+
+
+.container1{
+    background-image: url('../Assets/bg.jpg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Fixed background position */
+    min-height: 100vh; /* Minimum height to cover the whole screen */
+    display: flex;
+    flex-direction: column;
+    /* background-position: center; */
+    opacity: 0.9; /* Adjust the opacity as needed */
+    /* margin-left: 5px; Remove the quotes around the value */
+    /* padding: 20px; Add padding to the container */
+    /* align-items: center; Center the content horizontally */
+    justify-content: center; 
+    /* filter: blur(8px); */
+  }
+
+
+
+  .container1 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.tnc_container {
+  /* background: rgba(255, 255, 255, 0.08); */
+  background: white;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 850px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  color: black;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.section p {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+/* ================= */
+
+.section ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.section li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.section li strong {
+  font-weight: bold;
+}
+.supportlink {
+  color: #2563eb;
+  text-decoration: underline;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.supportLink:hover {
+  color: #1d4ed8;
+}
+
+
+
+
+
+/* =================tnc================= */
+  .sub_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    min-height: 100vh;
+    color: white;
+  }
+
+
+  .form{
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border:1px solid grey;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+
+  }
+
+  .welcome{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    flex-direction: column;
+
+  }
+
+  .welcome_text{
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .desc{
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .inputs{
+    width: 58%;
+  }
+
+  .input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: black;
+  }
+
+  label{
+    font-size: 1.25rem;
+  }
+
+
+  @media only screen and (max-width:1028px){
+
+  }
+
+  @media only screen and (max-width:768px){
+    .inputs{
+        width: 100%;
+    }
+  }
+
+  @media only screen and (max-width:576px){
+    .inputs{
+        width: 100%;
+      }
+      .form{
+        width: 98%;
+      }
+  }
+
+  @media only screen and (max-width:1028px){
+    
+  }
